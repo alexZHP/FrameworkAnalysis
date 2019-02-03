@@ -307,9 +307,9 @@ protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate d
 }
 ```
 跟进一次你就会看到`registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());`这样一行代码,你可以自己调试一下,这里直接说明这个registry是DefaultListableBeanFactory类。  
-一定要跟进到DefaultListableBeanFactory类看一下,你就会看到如下的一行代码`this.beanDefinitionMap.put(beanName, beanDefinition);`。  
+**一定要跟进到DefaultListableBeanFactory类看一下**,你就会看到如下的一行代码`this.beanDefinitionMap.put(beanName, beanDefinition);`。  
 这个`beanDefinitionMap`我贴出来它是什么`private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);`  
-看到了吧,Spring将读取的bean全部解析成BeanDefinition然后放到了一个Map里面..  
+看到了吧,**Spring将读取的bean全部解析成BeanDefinition然后放到了一个Map里面.. ** 
 
 **到了这里做个小结**
 **我们都做了什么？又到底跟踪了了什么？  
