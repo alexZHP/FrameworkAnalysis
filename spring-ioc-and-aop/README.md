@@ -312,11 +312,11 @@ protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate d
 看到了吧,Spring将读取的bean全部解析成BeanDefinition然后放到了一个Map里面..  
 
 **到了这里做个小结**
-**我们都做了什么？有到底跟踪了了什么？  
+**我们都做了什么？又到底跟踪了了什么？  
 1.首先我们通过ClassPathXmlApplicationContext的构造方法开始构建上下文  
 2.然后再`refresh()`中调用了一个`obtainFreshBeanFactory()`。深入之后,发现内部有开启调用了`loadBeanDefinitions(beanFactory)`,在该方法中,通过XmlBeanDefinitionReader配合ResourceLoader开始了解析和注册BeanDefinition之旅。  
 那么问题来了 1.BeanDefinition是啥？  2.BeanDefinition又会被注册到哪里？  
-回答1: BeanDefinition其实可以理解为就是我们常说的bean   回答2:会被注册到BeanFactory里面**  
+回答1: BeanDefinition其实可以理解为就是我们常说的bean   回答2:会被注册到BeanFactory里面,看上面的DefaultListableBeanFactory描述**  
 
 
 
