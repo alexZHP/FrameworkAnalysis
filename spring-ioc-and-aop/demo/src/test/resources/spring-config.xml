@@ -2,8 +2,12 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd" >
+
+    <context:component-scan base-package="com.example.demo.scan"/>
 
     <bean id="helloService" class="com.example.demo.base.HelloServiceImpl">
         <property name="content" value="hello"/>
@@ -11,4 +15,14 @@
     </bean>
 
     <bean id="outputService" class="com.example.demo.base.OutputServiceImpl"/>
+
+    <bean id="logAspect" class="com.example.demo.aop.LogAspect" />
+
+    <aop:config>
+        <aop:pointcut id="logPointcut" expression="execution(* com.example.demo..*(..))"/>
+        <aop:aspect ref="logAspect">
+            <aop:before method="before" pointcut-ref="logPointcut"/>  <!--advice-->
+            <aop:before method="after" pointcut-ref="logPointcut"/>
+        </aop:aspect>
+    </aop:config>
 </beans>
